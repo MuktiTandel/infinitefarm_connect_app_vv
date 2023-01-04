@@ -13,7 +13,7 @@ class EventsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-          preferredSize: Size(MediaQuery.of(context).size.width, 55.h),
+          preferredSize: Size(MediaQuery.of(context).size.width, 50.h),
           child: CustomAppBar(
               backImage: AppImages.backArrow,
               title: 'Events',

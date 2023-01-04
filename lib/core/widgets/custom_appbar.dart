@@ -12,9 +12,9 @@ class CustomAppBar extends StatelessWidget {
     required this.actionTitle
   }) : super(key: key);
 
-  String backImage;
-  String title;
-  String actionTitle;
+  final String backImage;
+  final String title;
+  final String actionTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +49,15 @@ class CustomAppBar extends StatelessWidget {
           style: TextStyle(
             color: Colors.black,
             fontSize: 20.sp,
-            fontFamily: 'Roboto',
+            fontFamily: 'Archia',
+            fontWeight: FontWeight.w600
           ),
         ),
         actions: [
           Padding(
             padding: EdgeInsets.only(
-                top: 14.h,
-                bottom: 14.h,
+                top: 10.h,
+                bottom: 10.h,
                 right: 20.w
             ),
             child: GestureDetector(
@@ -72,8 +73,8 @@ class CustomAppBar extends StatelessWidget {
                       style: TextStyle(
                           color: AppColors.blue,
                           fontSize: 15.sp,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500
+                          fontFamily: 'Archia',
+                        fontWeight: FontWeight.w500
                       ),
                     )
                 ),

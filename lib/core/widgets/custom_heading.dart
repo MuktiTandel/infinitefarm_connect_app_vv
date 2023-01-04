@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:infinitefarm_connect_app_vv/core/utils/app_colors.dart';
 
-class CustomText extends StatelessWidget {
-  const CustomText({
+class CustomHeading extends StatelessWidget {
+  const CustomHeading({
     Key? key,
     required this.text,
-    this.textAlign,
     this.fontSize,
-    this.textColor
+    this.fontWeight,
+    this.color
   }) : super(key: key);
 
   final String text;
-  final TextAlign? textAlign;
   final double? fontSize;
-  final Color? textColor;
+  final FontWeight? fontWeight;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: textAlign ?? TextAlign.center,
       style: TextStyle(
-          fontSize: fontSize ?? 15.sp,
+          fontSize: fontSize ?? 16.sp,
+          color: color ?? Colors.white,
           fontFamily: 'Archia',
-          color: textColor ?? AppColors.gray
+          fontWeight: fontWeight ?? FontWeight.w600
       ),
     );
   }

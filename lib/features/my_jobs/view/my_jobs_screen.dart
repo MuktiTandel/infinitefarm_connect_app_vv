@@ -7,6 +7,7 @@ import 'package:infinitefarm_connect_app_vv/core/navigation/app_routes.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/app_colors.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/app_images.dart';
 import 'package:infinitefarm_connect_app_vv/core/widgets/custom_appbar.dart';
+import 'package:infinitefarm_connect_app_vv/core/widgets/custom_button.dart';
 import 'package:infinitefarm_connect_app_vv/core/widgets/custom_text.dart';
 
 class MyJobsScreen extends StatelessWidget {
@@ -41,8 +42,8 @@ class MyJobsScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.sp,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w500
+                  fontFamily: 'Archia',
+                  fontWeight: FontWeight.w600
                 ),
               ),
               SizedBox(height: 20.h,),
@@ -50,28 +51,11 @@ class MyJobsScreen extends StatelessWidget {
                   text: 'Once jobs are saved, you’ll find then here'
               ),
               SizedBox(height: 30.h,),
-              SizedBox(
-                height: 50.h,
-                width: MediaQuery.of(context).size.width,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)
-                    )
-                  ),
-                    onPressed: (){
-                      Get.toNamed(AppRoutes.EVENTS);
-                    },
-                    child: Text(
-                        'Browse jobs for me',
-                      style: TextStyle(
-                          fontSize: 15.sp,
-                          fontFamily: 'Roboto',
-                          color: Colors.white
-                      ),
-                    )
-                ),
+              CustomButton(
+                  onPresses: (){
+                    Get.toNamed(AppRoutes.EVENTS);
+                  },
+                  buttonText: 'Browse jobs for me'
               )
             ],
           ),

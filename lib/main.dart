@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:infinitefarm_connect_app_vv/core/navigation/app_pages.dart';
+import 'package:infinitefarm_connect_app_vv/core/utils/app_theme.dart';
+import 'package:infinitefarm_connect_app_vv/features/home/view/home_screen.dart';
 import 'package:infinitefarm_connect_app_vv/features/my_jobs/view/my_jobs_screen.dart';
 
 void main() {
@@ -19,7 +21,9 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
-          home: const MyJobsScreen(),
+          theme: AppThemes.dark,
+          darkTheme: AppThemes.dark,
+          home: HomeScreen(),
         );
       },
     );

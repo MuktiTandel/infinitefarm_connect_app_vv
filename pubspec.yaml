@@ -107,5 +107,11 @@ flutter:
         - asset: assets/fonts/Roboto-Medium.ttf
         - asset: assets/fonts/Roboto-Regular.ttf
         - asset: assets/fonts/Roboto-Thin.ttf
+    - family: ABeeZee
+      fonts:
+        - asset: assets/fonts/ABeeZee-Regular.ttf
+    - family: Archia
+      fonts:
+        - asset: assets/fonts/Archia-Regular.otf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
