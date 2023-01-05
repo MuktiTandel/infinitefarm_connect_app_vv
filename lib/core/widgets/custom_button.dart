@@ -11,7 +11,10 @@ class CustomButton extends StatelessWidget {
     this.width,
     required this.onPresses,
     required this.buttonText,
-    this.radius
+    this.radius,
+    this.fontWeight,
+    this.backgroundColor,
+    this.textColor
   }) : super(key: key);
 
   final double? height;
@@ -19,6 +22,9 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPresses;
   final String buttonText;
   final double? radius;
+  final FontWeight? fontWeight;
+  final Color? backgroundColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,8 @@ class CustomButton extends StatelessWidget {
       width: width ?? MediaQuery.of(context).size.width,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.blue,
+               shadowColor: Colors.transparent,
+               backgroundColor: backgroundColor ?? AppColors.blue,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(radius ?? 16)
               )
@@ -40,7 +47,8 @@ class CustomButton extends StatelessWidget {
             style: TextStyle(
               fontSize: 16.sp,
               fontFamily: 'Archia',
-              color: Colors.white,
+              color: textColor ?? Colors.white,
+              fontWeight: fontWeight ?? FontWeight.w500
             ),
           )
       ),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:infinitefarm_connect_app_vv/core/navigation/app_pages.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/app_theme.dart';
+import 'package:infinitefarm_connect_app_vv/core/utils/theme_service.dart';
 import 'package:infinitefarm_connect_app_vv/features/home/view/home_screen.dart';
-import 'package:infinitefarm_connect_app_vv/features/my_jobs/view/my_jobs_screen.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -21,8 +23,9 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
-          theme: AppThemes.dark,
+          theme: AppThemes.light,
           darkTheme: AppThemes.dark,
+          themeMode: ThemeService().theme,
           home: HomeScreen(),
         );
       },

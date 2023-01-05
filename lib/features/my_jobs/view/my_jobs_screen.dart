@@ -9,6 +9,7 @@ import 'package:infinitefarm_connect_app_vv/core/utils/app_images.dart';
 import 'package:infinitefarm_connect_app_vv/core/widgets/custom_appbar.dart';
 import 'package:infinitefarm_connect_app_vv/core/widgets/custom_button.dart';
 import 'package:infinitefarm_connect_app_vv/core/widgets/custom_text.dart';
+import 'package:infinitefarm_connect_app_vv/core/widgets/custom_appbar.dart';
 
 class MyJobsScreen extends StatelessWidget {
   const MyJobsScreen({Key? key}) : super(key: key);
@@ -16,48 +17,65 @@ class MyJobsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(
-          preferredSize: Size(MediaQuery.of(context).size.width, 55.h),
-          child: CustomAppBar(
-            backImage: AppImages.backArrow,
-            title: 'My Jobs',
-            actionTitle: 'Saved',
-          )
-      ),
-      body: Center(
-        child: Padding(
-          padding:  EdgeInsets.all(20.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                  AppImages.jobEvent,
-                height: 230.h,
-                width: 230.w,
+      backgroundColor: context.theme.backgroundColor,
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: Get.isDarkMode ? const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(AppImages.darkBackground),
+                fit: BoxFit.cover,
+                opacity: 0.8
+            )
+        ) : const BoxDecoration(),
+        child: SafeArea(
+          child: Center(
+            child: Padding(
+              padding:  EdgeInsets.all(15.w),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomAppbar(
+                      leftIcon: AppImages.backArrow,
+                      title: 'My Jobs',
+                      rightText: 'Saved',
+                      leftClick: (){
+                        Get.back();
+                      },
+                      rightClick: (){}
+                  ),
+                  Expanded(child: SizedBox(height: 10.h,)),
+                  SvgPicture.asset(
+                    Get.isDarkMode ? AppImages.jobEventDark : AppImages.jobEvent,
+                    height: 230.h,
+                    width: 230.w,
+                  ),
+                  SizedBox(height: 30.h,),
+                  Text(
+                      'Start saving jobs you are interested in',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 25.sp,
+                      fontFamily: 'Archia',
+                      fontWeight: FontWeight.w600
+                    ),
+                  ),
+                  SizedBox(height: 20.h,),
+                  CustomText(
+                      text: 'Once jobs are saved, you’ll find then here',
+                    textColor: Get.isDarkMode ? Colors.white.withOpacity(0.8) : AppColors.gray,
+                  ),
+                  SizedBox(height: 30.h,),
+                  CustomButton(
+                      onPresses: (){
+                        Get.toNamed(AppRoutes.EVENTS);
+                      },
+                      buttonText: 'Browse jobs for me',
+                    fontWeight: FontWeight.w600,
+                  ),
+                  Expanded(child: SizedBox(height: 10.h,))
+                ],
               ),
-              SizedBox(height: 30.h,),
-              Text(
-                  'Start saving jobs you are interested in',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.sp,
-                  fontFamily: 'Archia',
-                  fontWeight: FontWeight.w600
-                ),
-              ),
-              SizedBox(height: 20.h,),
-              const CustomText(
-                  text: 'Once jobs are saved, you’ll find then here'
-              ),
-              SizedBox(height: 30.h,),
-              CustomButton(
-                  onPresses: (){
-                    Get.toNamed(AppRoutes.EVENTS);
-                  },
-                  buttonText: 'Browse jobs for me'
-              )
-            ],
+            ),
           ),
         ),
       ),

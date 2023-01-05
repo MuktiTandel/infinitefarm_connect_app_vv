@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/app_colors.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/app_images.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/scroll_behavior.dart';
+import 'package:infinitefarm_connect_app_vv/core/utils/theme_service.dart';
 import 'package:infinitefarm_connect_app_vv/core/widgets/custom_button.dart';
 import 'package:infinitefarm_connect_app_vv/core/widgets/custom_text.dart';
 
 class MyNetworkScreen extends StatelessWidget {
-  const MyNetworkScreen({Key? key}) : super(key: key);
+   MyNetworkScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,17 @@ class MyNetworkScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: (){},
+              onTap: (){
+              },
               child: Container(
                 height: 50.h,
                 padding: EdgeInsets.only(left: 15.w, right: 15.w),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white.withOpacity(0.05)
+                  color: Get.isDarkMode
+                      ? Colors.white.withOpacity(0.05)
+                      : Colors.white
                 ),
                 child: Center(
                   child: Row(
@@ -34,13 +39,14 @@ class MyNetworkScreen extends StatelessWidget {
                     children: [
                       CustomText(
                           text: 'Manage my network',
-                        textColor: Colors.white,
+                        textColor: Get.isDarkMode ? Colors.white : Colors.black,
                         fontSize: 16.sp,
                       ),
                       SvgPicture.asset(
                           AppImages.rightArrow,
                         height: 15.h,
                         width: 15.w,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                       )
                     ],
                   ),
@@ -52,7 +58,9 @@ class MyNetworkScreen extends StatelessWidget {
               padding: EdgeInsets.all(15.w),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.white.withOpacity(0.05)
+                color: Get.isDarkMode
+                    ? Colors.white.withOpacity(0.05)
+                    : Colors.white
               ),
               child: Column(
                 children: [
@@ -61,20 +69,23 @@ class MyNetworkScreen extends StatelessWidget {
                     children: [
                       CustomText(
                         text: 'Connections inquires',
-                        textColor: Colors.white,
+                        textColor: Get.isDarkMode ? Colors.white : Colors.black,
                         fontSize: 16.sp,
                       ),
                       SvgPicture.asset(
                         AppImages.rightArrow,
                         height: 15.h,
                         width: 15.w,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                       )
                     ],
                   ),
                   SizedBox(height: 15.h,),
                   Divider(
                     thickness: 1.w,
-                    color: Colors.white.withOpacity(0.4),
+                    color: Get.isDarkMode
+                        ? Colors.white.withOpacity(0.4)
+                        : AppColors.gray.withOpacity(0.4),
                   ),
                   SizedBox(height: 10.h,),
                   ListView.builder(
@@ -92,7 +103,9 @@ class MyNetworkScreen extends StatelessWidget {
                   ),
                   Divider(
                     thickness: 1.w,
-                    color: Colors.white.withOpacity(0.4),
+                    color: Get.isDarkMode
+                        ? Colors.white.withOpacity(0.4)
+                        : AppColors.gray.withOpacity(0.4),
                   ),
                   SizedBox(height: 10.h),
                   GestureDetector(
@@ -100,7 +113,7 @@ class MyNetworkScreen extends StatelessWidget {
                     child: CustomText(
                         text: 'Show more',
                       fontSize: 16.sp,
-                      textColor: Colors.white,
+                      textColor: Get.isDarkMode ? Colors.white : Colors.black,
                     ),
                   )
                 ],
@@ -110,7 +123,7 @@ class MyNetworkScreen extends StatelessWidget {
             CustomText(
                 text: 'People you may know from Spark Foundation',
               fontSize: 14.sp,
-              textColor: Colors.white,
+              textColor: Get.isDarkMode ? Colors.white : Colors.black,
             ),
             SizedBox(height: 20.h,),
             GridView.builder(
@@ -120,7 +133,7 @@ class MyNetworkScreen extends StatelessWidget {
                     crossAxisCount: 2,
                   crossAxisSpacing: 15.w,
                   mainAxisSpacing: 15.h,
-                  childAspectRatio: 1.3 / 2,
+                  childAspectRatio: 1.2.w/2.w,
                 ),
                 itemCount: 4,
                 itemBuilder: (context, index) {
@@ -228,7 +241,7 @@ class MyNetworkScreen extends StatelessWidget {
                 children: [
                   CustomText(
                       text: name,
-                    textColor: Colors.white,
+                    textColor: Get.isDarkMode ? Colors.white : Colors.black,
                     fontSize: 15.sp,
                   ),
                   SizedBox(height: 1.h,),
@@ -241,7 +254,9 @@ class MyNetworkScreen extends StatelessWidget {
                       work,
                     style: TextStyle(
                       fontSize: 14.sp,
-                      color: Colors.white.withOpacity(0.5),
+                      color: Get.isDarkMode
+                          ? Colors.white.withOpacity(0.5)
+                          : Colors.black.withOpacity(0.5),
                       overflow: TextOverflow.ellipsis,
                       fontFamily: 'Archia'
                     ),
@@ -253,18 +268,39 @@ class MyNetworkScreen extends StatelessWidget {
                           AppImages.mutual,
                         height: 7.h,
                         width: 7.w,
+                        color: Get.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
                       ),
                       SizedBox(width: 3.w,),
                       CustomText(
                           text: mutual,
-                        textColor: Colors.white.withOpacity(0.5),
+                        textColor: Get.isDarkMode
+                            ? Colors.white.withOpacity(0.5)
+                            : Colors.black.withOpacity(0.5),
                         fontSize: 12.sp,
                       ),
                       SizedBox(width: 2.w,),
                       CustomText(
-                        text: 'mutual connections',
-                        textColor: Colors.white.withOpacity(0.5),
+                        text: 'mutual',
+                        textColor: Get.isDarkMode
+                            ? Colors.white.withOpacity(0.5)
+                            : Colors.black.withOpacity(0.5),
                         fontSize: 12.sp,
+                      ),
+                      SizedBox(width: 2.w,),
+                      Expanded(
+                        child: Text(
+                          'connections',
+                          style: TextStyle(
+                              fontSize: 12.sp,
+                              color: Get.isDarkMode
+                                  ? Colors.white.withOpacity(0.5)
+                                  : Colors.black.withOpacity(0.5),
+                              overflow: TextOverflow.ellipsis,
+                              fontFamily: 'Archia'
+                          ),
+                        ),
                       ),
                     ],
                   )

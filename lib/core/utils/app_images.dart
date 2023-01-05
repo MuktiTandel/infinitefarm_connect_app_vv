@@ -25,5 +25,21 @@ class AppImages {
   static const hashtag = 'assets/images/hashtag.svg';
   static const more = 'assets/images/more.svg';
   static const video = 'assets/images/video.svg';
+  static const gallery_ = 'assets/images/gallery_.svg';
+  static const video_ = 'assets/images/video_.svg';
+  static const celebrate = 'assets/images/celebrate.svg';
+  static const document = 'assets/images/document.svg';
+  static const share = 'assets/images/share.svg';
+  static const expert = 'assets/images/expert.svg';
+  static const poll = 'assets/images/poll.svg';
+  static const event = 'assets/images/event.svg';
+  static const group = 'assets/images/group.svg';
+  static const groupDark = 'assets/images/group_dark.svg';
+  static const jobEventDark = 'assets/images/jobevent_dark.svg';
+  static const setting = 'assets/images/setting.svg';
+  static const Dprofile = 'assets/images/d_profile.png';
+  static const profile1 = 'assets/images/profile1.png';
+  static const eye = 'assets/images/eye.svg';
+  static const profileView = 'assets/images/profile_view.svg';
 
 }

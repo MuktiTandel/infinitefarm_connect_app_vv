@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:infinitefarm_connect_app_vv/core/navigation/app_routes.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/app_colors.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/app_images.dart';
+import 'package:infinitefarm_connect_app_vv/core/utils/theme_service.dart';
+import 'package:infinitefarm_connect_app_vv/core/widgets/appbar_textfield.dart';
 import 'package:infinitefarm_connect_app_vv/features/home/controller/home_controller.dart';
 import 'package:infinitefarm_connect_app_vv/features/home/view/main_home_screen.dart';
 import 'package:infinitefarm_connect_app_vv/features/my_jobs/view/job_screen.dart';
@@ -22,13 +24,13 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: context.theme.backgroundColor,
       body: Container(
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
+        decoration: Get.isDarkMode ? const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(AppImages.darkBackground),
             fit: BoxFit.cover,
             opacity: 0.8
           )
-        ),
+        ) : const BoxDecoration(),
         child: SafeArea(
           child: Padding(
               padding: EdgeInsets.only(
@@ -42,44 +44,32 @@ class HomeScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircleAvatar(
-                      maxRadius: 26.w,
-                       child: Image.asset(AppImages.profile),
+                    GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: (){
+                        Get.toNamed(AppRoutes.PROFILE);
+                      },
+                      child: CircleAvatar(
+                        maxRadius: 26.w,
+                         child: Image.asset(AppImages.profile),
+                      ),
                     ),
                     SizedBox(
                       width: 220.w,
-                        child: TextFormField(
-                          cursorColor: Colors.white,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none
-                            ),
-                            fillColor: Colors.white.withOpacity(0.05),
-                            filled: true,
-                            prefixIcon: Padding(
-                              padding:  EdgeInsets.all(12.w),
-                              child: SvgPicture.asset(
-                                  AppImages.search,
-                                width: 5.w,
-                                height: 5.h,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                        child: AppbarTextfield(
                             hintText: 'Search',
-                            hintStyle: TextStyle(
-                              color: Colors.white.withOpacity(0.3),
-                              fontFamily: 'Archia'
-                            )
-                          ),
+                          controller: homeController.search,
                         )
                     ),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        ThemeService().switchTheme();
+                      },
                       child: SvgPicture.asset(
                           AppImages.message,
                         height: 23.h,
                         width: 23.w,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                       ),
                     )
                   ],
@@ -88,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                 Obx(() => Expanded(
                   child: IndexedStack(
                     index: homeController.tabIndex.value,
-                    children: const [
+                    children:  [
                       MainHomeScreen(),
                       MyNetworkScreen(),
                       NotificationScreen(),

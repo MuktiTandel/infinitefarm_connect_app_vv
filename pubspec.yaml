@@ -46,6 +46,9 @@ dependencies:
   # For display svg picture
   flutter_svg: ^1.1.6
 
+  # For data Store
+  get_storage: ^2.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

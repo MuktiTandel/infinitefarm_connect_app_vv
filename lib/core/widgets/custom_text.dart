@@ -8,13 +8,15 @@ class CustomText extends StatelessWidget {
     required this.text,
     this.textAlign,
     this.fontSize,
-    this.textColor
+    this.textColor,
+    this.fontWeight
   }) : super(key: key);
 
   final String text;
   final TextAlign? textAlign;
   final double? fontSize;
   final Color? textColor;
+  final FontWeight? fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,8 @@ class CustomText extends StatelessWidget {
       style: TextStyle(
           fontSize: fontSize ?? 15.sp,
           fontFamily: 'Archia',
-          color: textColor ?? AppColors.gray
+          color: textColor ?? AppColors.gray,
+          fontWeight: fontWeight ?? FontWeight.w500
       ),
     );
   }
