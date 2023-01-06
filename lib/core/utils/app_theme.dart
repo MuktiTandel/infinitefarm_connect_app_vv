@@ -4,7 +4,7 @@ import 'package:infinitefarm_connect_app_vv/core/utils/app_colors.dart';
 class AppThemes {
 
   static final light = ThemeData.light().copyWith(
-    backgroundColor: AppColors.white
+    backgroundColor: AppColors.white,
   );
 
   static final dark = ThemeData.dark().copyWith(

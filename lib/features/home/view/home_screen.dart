@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -20,123 +21,132 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.theme.backgroundColor,
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: Get.isDarkMode ? const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(AppImages.darkBackground),
-            fit: BoxFit.cover,
-            opacity: 0.8
-          )
-        ) : const BoxDecoration(),
-        child: SafeArea(
-          child: Padding(
-              padding: EdgeInsets.only(
-                left: 15.w,
-                right: 15.w,
-                top: 10.h
-              ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: (){
-                        Get.toNamed(AppRoutes.PROFILE);
-                      },
-                      child: CircleAvatar(
-                        maxRadius: 26.w,
-                         child: Image.asset(AppImages.profile),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 220.w,
-                        child: AppbarTextfield(
-                            hintText: 'Search',
-                          controller: homeController.search,
-                        )
-                    ),
-                    GestureDetector(
-                      onTap: (){
-                        ThemeService().switchTheme();
-                      },
-                      child: SvgPicture.asset(
-                          AppImages.message,
-                        height: 23.h,
-                        width: 23.w,
-                        color: Get.isDarkMode ? Colors.white : Colors.black,
-                      ),
-                    )
-                  ],
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(
+        statusBarColor:  Colors.transparent,
+        statusBarIconBrightness: Get.isDarkMode
+            ? Brightness.light
+            : Brightness.dark
+      ),
+      child: Scaffold(
+        backgroundColor: context.theme.backgroundColor,
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: Get.isDarkMode ? const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(AppImages.darkBackground),
+              fit: BoxFit.cover,
+              opacity: 0.8
+            )
+          ) : const BoxDecoration(),
+          child: SafeArea(
+            child: Padding(
+                padding: EdgeInsets.only(
+                  left: 15.w,
+                  right: 15.w,
+                  top: 10.h
                 ),
-                SizedBox(height: 18.h,),
-                Obx(() => Expanded(
-                  child: IndexedStack(
-                    index: homeController.tabIndex.value,
-                    children:  [
-                      MainHomeScreen(),
-                      MyNetworkScreen(),
-                      NotificationScreen(),
-                      JobScreen(),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTap: (){
+                          Get.toNamed(AppRoutes.PROFILE);
+                        },
+                        child: CircleAvatar(
+                          maxRadius: 26.w,
+                           backgroundColor: AppColors.white,
+                           child: Image.asset(AppImages.profile),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 220.w,
+                          child: AppbarTextfield(
+                              hintText: 'Search',
+                            controller: homeController.search,
+                          )
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          ThemeService().switchTheme();
+                        },
+                        child: SvgPicture.asset(
+                            AppImages.message,
+                          height: 23.h,
+                          width: 23.w,
+                          color: Get.isDarkMode ? Colors.white : Colors.black,
+                        ),
+                      )
                     ],
                   ),
-                ))
+                  SizedBox(height: 18.h,),
+                  Obx(() => Expanded(
+                    child: IndexedStack(
+                      index: homeController.tabIndex.value,
+                      children:  [
+                        MainHomeScreen(),
+                        MyNetworkScreen(),
+                        NotificationScreen(),
+                        JobScreen(),
+                      ],
+                    ),
+                  ))
+                ],
+              ),
+            ),
+          )
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.transparent,
+          shape: const CircularNotchedRectangle(),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 70.h,
+            decoration: BoxDecoration(
+                color: AppColors.bottomSheet,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20)
+                )
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                bottomItem(AppImages.home, 'Home', 0),
+                bottomItem(AppImages.myNetwork, 'My Network', 1),
+                SizedBox(width: 20.w,),
+                bottomItem(AppImages.notification, 'Notifications', 2),
+                bottomItem(AppImages.job, 'Jobs', 3),
               ],
             ),
           ),
-        )
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        shape: const CircularNotchedRectangle(),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 70.h,
-          decoration: BoxDecoration(
-              color: AppColors.bottomSheet,
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20)
-              )
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              bottomItem(AppImages.home, 'Home', 0),
-              bottomItem(AppImages.myNetwork, 'My Network', 1),
-              SizedBox(width: 20.w,),
-              bottomItem(AppImages.notification, 'Notifications', 2),
-              bottomItem(AppImages.job, 'Jobs', 3),
-            ],
-          ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: SizedBox(
-        height: 55.h,
-        width: 55.w,
-        child: Visibility(
-          visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
-          child: FittedBox(
-            child: FloatingActionButton(
-              shape: const StadiumBorder(
-                side: BorderSide(
-                  color: Colors.white, width: 2
-                )
-              ),
-                onPressed: (){
-                  Get.toNamed(AppRoutes.POST);
-                },
-              backgroundColor: AppColors.blue,
-              child: Icon(
-                  Icons.add,
-                color: Colors.white,
-                size: 30.w,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: SizedBox(
+          height: 55.h,
+          width: 55.w,
+          child: Visibility(
+            visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+            child: FittedBox(
+              child: FloatingActionButton(
+                shape: const StadiumBorder(
+                  side: BorderSide(
+                    color: Colors.white, width: 2
+                  )
+                ),
+                  onPressed: (){
+                    Get.toNamed(AppRoutes.POST);
+                  },
+                backgroundColor: AppColors.blue,
+                child: Icon(
+                    Icons.add,
+                  color: Colors.white,
+                  size: 30.w,
+                ),
               ),
             ),
           ),

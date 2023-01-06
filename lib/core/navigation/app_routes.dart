@@ -6,5 +6,6 @@ class AppRoutes {
   static const POST = '/post';
   static const EVENTGROUPREQUEST = '/eventGroupRequest';
   static const PROFILE = '/profile';
+  static const EDITEXPERIENCESCREEN = '/editExperienceScreen';
 
 }

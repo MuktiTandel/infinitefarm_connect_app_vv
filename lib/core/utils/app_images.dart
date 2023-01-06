@@ -41,5 +41,13 @@ class AppImages {
   static const profile1 = 'assets/images/profile1.png';
   static const eye = 'assets/images/eye.svg';
   static const profileView = 'assets/images/profile_view.svg';
+  static const postView = 'assets/images/post_view.svg';
+  static const camera_ = 'assets/images/camera_.svg';
+  static const creatorMode = 'assets/images/creator_mode.svg';
+  static const forwardArrow = 'assets/images/forward_arrow.svg';
+  static const add = 'assets/images/add.svg';
+  static const edit = 'assets/images/edit.svg';
+  static const experience = 'assets/images/experience.png';
+  static const education = 'assets/images/education.png';
 
 }

@@ -34,10 +34,14 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
                shadowColor: Colors.transparent,
-               backgroundColor: backgroundColor ?? AppColors.blue,
+                backgroundColor: backgroundColor ?? AppColors.blue,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(radius ?? 16)
-              )
+                  borderRadius: BorderRadius.circular(radius ?? 16),
+                side: Get.isDarkMode ? BorderSide(
+                  color: AppColors.blue,
+                  width: 1.w
+                ) : BorderSide.none
+              ),
           ),
           onPressed: (){
             onPresses();

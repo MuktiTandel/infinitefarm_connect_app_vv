@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/app_colors.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/app_images.dart';
+import 'package:infinitefarm_connect_app_vv/core/utils/bottomsheet_container.dart';
 import 'package:infinitefarm_connect_app_vv/core/utils/theme_service.dart';
 import 'package:infinitefarm_connect_app_vv/core/widgets/custom_container.dart';
 import 'package:infinitefarm_connect_app_vv/core/widgets/custom_text.dart';
@@ -139,30 +140,11 @@ class PostScreen extends StatelessWidget {
                                     isScrollControlled: true,
                                     backgroundColor: Colors.transparent,
                                     builder: (BuildContext context) {
-                                      return Container(
-                                        height: 500.h,
-                                        decoration:
-                                        BoxDecoration(
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(30),
-                                            topRight: Radius.circular(30)
-                                          ),
-                                          color: Get.isDarkMode
-                                              ?  AppColors.dark_theme
-                                              : Colors.white
-                                        ),
-                                        child: Padding(
-                                          padding:  EdgeInsets.all(15.w),
-                                          child: Column(
+                                       return bottomsheetContainer(
+                                          500.h,
+                                          Column(
                                             children: [
-                                              Container(
-                                                height: 4.h,
-                                                width: 55.w,
-                                                decoration: BoxDecoration(
-                                                  color: AppColors.lightGray,
-                                                  borderRadius: BorderRadius.circular(10)
-                                                ),
-                                              ),
+                                              dividerContainer(),
                                               SizedBox(height: 20.h,),
                                               bottomSheetItem(AppImages.gallery_, 'Add Photo', (){}),
                                               SizedBox(height: 15.h,),
@@ -210,8 +192,7 @@ class PostScreen extends StatelessWidget {
                                               SizedBox(height: 15.h,),
                                               bottomSheetItem(AppImages.event, 'Create event', (){}),
                                             ],
-                                          ),
-                                        ),
+                                          )
                                       );
                                     }
                                 );

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:infinitefarm_connect_app_vv/core/navigation/app_routes.dart';
 import 'package:infinitefarm_connect_app_vv/features/events/view/event_group_request_screen.dart';
 import 'package:infinitefarm_connect_app_vv/features/events/view/events_screen.dart';
+import 'package:infinitefarm_connect_app_vv/features/experience/view/edit_experience_screen.dart';
 import 'package:infinitefarm_connect_app_vv/features/home/view/home_screen.dart';
 import 'package:infinitefarm_connect_app_vv/features/my_jobs/view/my_jobs_screen.dart';
 import 'package:infinitefarm_connect_app_vv/features/post/view/post_screen.dart';
@@ -18,5 +19,6 @@ class AppPages {
     GetPage(name: AppRoutes.POST, page: ()=> PostScreen()),
     GetPage(name: AppRoutes.EVENTGROUPREQUEST, page: ()=>  EventGroupRequestScreen()),
     GetPage(name: AppRoutes.PROFILE, page: ()=> ProfileScreen()),
+    GetPage(name: AppRoutes.EDITEXPERIENCESCREEN, page: ()=> const EditExperienceScreen()),
   ];
 }

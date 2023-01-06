@@ -31,7 +31,7 @@ class CustomAppbar extends StatelessWidget {
             leftClick();
           },
           child: Container(
-            height: 40.h,
+            height: 35.h,
             width: 40.w,
             decoration: BoxDecoration(
                 color: AppColors.blue.withOpacity(0.05),
